@@ -311,3 +311,104 @@ Backend allows requests from `http://localhost:5173` (Vite default).
 Change `FRONTEND_URL` in `.env` if different.
 
 ---
+
+---
+
+# 🎨 Frontend Overview
+
+Traveloop frontend is built using a modern SaaS-inspired UI architecture focused on intelligent travel planning, budgeting, analytics, and seamless user experience.
+
+Built with React, Tailwind CSS, and Vite for fast performance and scalable component management. :contentReference[oaicite:0]{index=0}
+
+---
+
+# 🚀 Frontend Features
+
+## 🔐 Authentication
+- User Login
+- User Registration
+- Protected Dashboard Flow
+- Logout Functionality
+- Token-ready Authentication Architecture
+
+---
+
+## 📊 Dashboard
+- Smart Analytics Dashboard
+- KPI Statistics Cards
+- AI Recommendation Panels
+- Budget Insights
+- Recent Activity Timeline
+- Upcoming Journeys Section
+
+---
+
+## ✈️ Trips Management
+- Create New Trip
+- View All Trips
+- Dynamic Trip Cards
+- Destination & Budget Overview
+- Backend-ready Trip Fetching Structure
+
+---
+
+## 💰 Budget Management
+- Budget Analytics
+- Expense Insights
+- AI Budget Optimization Suggestions
+- Interactive Charts using Recharts
+
+---
+
+## 🌍 Activities Explorer
+- Explore Travel Activities
+- Category Filtering UI
+- Experience Cards
+- Travel Recommendations
+
+---
+
+## 👤 Profile Management
+- Edit User Details
+- Logout Support
+- Account Settings UI
+
+---
+
+# 🛠 Frontend Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| React | Frontend Framework |
+| Vite | Build Tool |
+| Tailwind CSS | Styling |
+| React Router DOM | Routing |
+| Axios | API Requests |
+| Recharts | Analytics Graphs |
+| Lucide React | Icons |
+
+---
+
+# 📁 Frontend Folder Structure
+
+```bash
+src/
+│
+├── components/
+│   ├── cards/
+│   ├── layout/
+│   └── ui/
+│
+├── pages/
+│   ├── auth/
+│   ├── dashboard/
+│   ├── trips/
+│   ├── budget/
+│   ├── activities/
+│   └── profile/
+│
+├── routes/
+├── services/
+├── styles/
+└── App.jsx
+```
