@@ -412,3 +412,40 @@ src/
 ├── styles/
 └── App.jsx
 ```
+---
+
+# 📸 Application Screenshots
+
+## 🔐 Authentication Page
+
+![Sign-in](screenshots/Sign-in page.jpeg)
+
+---
+
+## 📊 Smart Dashboard
+
+![Dashboard](screenshots/DashBoard.jpeg)
+
+---
+
+## ✈️ Trips Management
+
+![Trips](screenshots/Trips.jpeg)
+
+---
+
+## 📝 Create Journey
+
+![Create Journey](screenshots/Create a journey.jpeg)
+
+---
+
+## 💰 Budget Management
+
+![Budget](screenshots/Budget management.jpeg)
+
+---
+
+## 🌍 Activities Explorer
+
+![Activities](screenshots/Explore Activities.jpeg)
