@@ -9,6 +9,7 @@ import DashboardLayout from "../components/layout/DashboardLayout";
 import DashboardPage from "../pages/dashboard/DashboardPage";
 import MyTrips from "../pages/trips/MyTrips";
 import BudgetPage from "../pages/budget/BudgetPage";
+import ActivityPage from "../pages/activities/ActivityPage";
 
 function AppRoutes() {
   return (
@@ -31,6 +32,10 @@ function AppRoutes() {
           <Route
             path="/budget"
             element={<BudgetPage />}
+          />
+          <Route
+            path="/activities"
+            element={<ActivityPage />}
           />
 
         </Routes>
