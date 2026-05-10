@@ -24,7 +24,7 @@ const menuItems = [
 
 function Sidebar() {
   return (
-    <aside className="w-72 min-h-screen bg-white border-r border-stone-200 px-6 py-8 flex flex-col justify-between">
+    <aside className="w-64 min-h-screen bg-white border-r border-stone-200 px-6 py-8 flex flex-col justify-between">
 
       {/* Logo Section */}
       <div>

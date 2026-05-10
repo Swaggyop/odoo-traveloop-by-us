@@ -19,7 +19,7 @@ function Navbar() {
       <div className="flex items-center gap-4">
 
         {/* Search */}
-        <div className="flex items-center gap-3 bg-white border border-stone-200 rounded-2xl px-4 py-3 shadow-sm w-[280px]">
+        <div className="flex items-center gap-3 bg-white border border-stone-200 rounded-2xl px-4 py-3 shadow-sm w-70">
 
           <Search size={18} className="text-stone-400" />
 

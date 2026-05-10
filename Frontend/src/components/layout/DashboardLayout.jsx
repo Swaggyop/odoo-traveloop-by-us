@@ -9,7 +9,7 @@ function DashboardLayout({ children }) {
       <Sidebar />
 
       {/* Main Content */}
-      <main className="flex-1 px-10 py-8">
+      <main className="flex-1 px-8 py-6">
 
         <Navbar />
 
