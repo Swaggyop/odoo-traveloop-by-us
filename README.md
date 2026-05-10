@@ -449,3 +449,7 @@ src/
 ## 🌍 Activities Explorer
 
 ![Activities](screenshots/Explore-Activities.jpeg)
+
+## api testing
+<img width="1291" height="628" alt="Screenshot 2026-05-10 124133" src="https://github.com/user-attachments/assets/698d79fd-b08e-4f3d-9be9-3ef3c9a11da1" />
+
