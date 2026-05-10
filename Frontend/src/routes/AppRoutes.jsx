@@ -2,6 +2,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  Navigate,
 } from "react-router-dom";
 
 import DashboardLayout from "../components/layout/DashboardLayout";
@@ -11,36 +12,96 @@ import MyTrips from "../pages/trips/MyTrips";
 import BudgetPage from "../pages/budget/BudgetPage";
 import ActivityPage from "../pages/activities/ActivityPage";
 
+import LoginPage from "../pages/auth/LoginPage";
+import RegisterPage from "../pages/auth/RegisterPage";
+import CreateTripPage from "../pages/trips/CreateTripPage";
+import ProfilePage from "../pages/profile/ProfilePage";
+
 function AppRoutes() {
   return (
     <BrowserRouter>
 
-      <DashboardLayout>
+      <Routes>
 
-        <Routes>
+        {/* Redirect Root */}
+        <Route
+          path="/"
+          element={<Navigate to="/login" />}
+        />
 
-          <Route
-            path="/"
-            element={<DashboardPage />}
-          />
+        {/* Public Routes */}
+        <Route
+          path="/login"
+          element={<LoginPage />}
+        />
 
-          <Route
-            path="/trips"
-            element={<MyTrips />}
-          />
+        <Route
+          path="/register"
+          element={<RegisterPage />}
+        />
 
-          <Route
-            path="/budget"
-            element={<BudgetPage />}
-          />
-          <Route
-            path="/activities"
-            element={<ActivityPage />}
-          />
+        {/* Dashboard Routes */}
+        <Route
+          path="/dashboard"
+          element={
+            <DashboardLayout>
+              <DashboardPage />
+            </DashboardLayout>
+          }
+        />
 
-        </Routes>
+        <Route
+          path="/trips"
+          element={
+            <DashboardLayout>
+              <MyTrips />
+            </DashboardLayout>
+          }
+        />
 
-      </DashboardLayout>
+        <Route
+          path="/budget"
+          element={
+            <DashboardLayout>
+              <BudgetPage />
+            </DashboardLayout>
+          }
+        />
+
+        <Route
+          path="/activities"
+          element={
+            <DashboardLayout>
+              <ActivityPage />
+            </DashboardLayout>
+          }
+        />
+
+        {/* Fallback */}
+        <Route
+          path="*"
+          element={<Navigate to="/login" />}
+        />
+
+        <Route
+  path="/create-trip"
+  element={
+    <DashboardLayout>
+      <CreateTripPage />
+    </DashboardLayout>
+  }
+/>
+
+<Route
+  path="/profile"
+  element={
+    <DashboardLayout>
+      <ProfilePage />
+    </DashboardLayout>
+  }
+/>
+
+      </Routes>
 
     </BrowserRouter>
   );

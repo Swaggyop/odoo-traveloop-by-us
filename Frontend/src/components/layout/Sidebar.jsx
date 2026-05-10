@@ -1,13 +1,9 @@
 import {
   LayoutDashboard,
   Map,
-  CalendarDays,
   Wallet,
   Compass,
-  Package,
-  NotebookPen,
   User,
-  BarChart3,
 } from "lucide-react";
 
 import { Link, useLocation } from "react-router-dom";
@@ -16,19 +12,19 @@ const menuItems = [
   {
     name: "Dashboard",
     icon: LayoutDashboard,
-    path: "/",
+    path: "/dashboard",
+  },
+
+  {
+    name: "Create Trip",
+    icon: Map,
+    path: "/create-trip",
   },
 
   {
     name: "Trips",
     icon: Map,
     path: "/trips",
-  },
-
-  {
-    name: "Itinerary",
-    icon: CalendarDays,
-    path: "/itinerary",
   },
 
   {
@@ -44,27 +40,9 @@ const menuItems = [
   },
 
   {
-    name: "Packing",
-    icon: Package,
-    path: "/packing",
-  },
-
-  {
-    name: "Notes",
-    icon: NotebookPen,
-    path: "/notes",
-  },
-
-  {
     name: "Profile",
     icon: User,
     path: "/profile",
-  },
-
-  {
-    name: "Analytics",
-    icon: BarChart3,
-    path: "/analytics",
   },
 ];
 
@@ -143,7 +121,7 @@ function Sidebar() {
           </h3>
 
           <p className="text-sm text-stone-500">
-            Product Explorer
+            Travel Strategist
           </p>
 
         </div>
