@@ -112,3 +112,35 @@ trips ──< trip_notes ──> trip_stops (optional)
 - Public sharing via `share_token` (short random string), no auth needed to read
 
 ---
+## 📡 Full API Reference
+
+All protected routes need: `Authorization: Bearer <token>`
+
+### Auth — `/api/auth`
+
+| Method | Path | Auth | Description |
+|--------|------|------|-------------|
+| POST | `/register` | ❌ | Create account |
+| POST | `/login` | ❌ | Login, returns JWT |
+| GET | `/me` | ✅ | Get current user |
+| PUT | `/profile` | ✅ | Update name/avatar/language |
+| DELETE | `/account` | ✅ | Delete account |
+
+**Register body:** `{ name, email, password }`  
+**Login body:** `{ email, password }`  
+**Response:** `{ token, user }`
+
+---
+
+### Trips — `/api/trips`
+
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/` | List my trips (with stop count + total cost) |
+| POST | `/` | Create trip |
+| GET | `/:id` | Get full trip with stops + activities |
+| PUT | `/:id` | Update trip metadata |
+| DELETE | `/:id` | Delete trip |
+| POST | `/:id/share` | Toggle public sharing, returns share_url |
+| POST | `/:id/clone` | Clone trip into my account |
+| GET | `/:id/budget` | Full cost breakdown |
