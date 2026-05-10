@@ -204,3 +204,110 @@ All protected routes need: `Authorization: Bearer <token>`
 ```
 
 ---
+
+### Cities — `/api/cities`
+
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/?search=paris&region=Europe` | Search cities |
+| GET | `/:id` | City details + all activities |
+| GET | `/:id/activities?category=food&maxCost=50` | Filter activities |
+
+---
+
+### Budget — `/api/trips/:id/budget`
+
+Returns a rich breakdown for the Budget screen:
+```json
+{
+  "trip_id": "...",
+  "budget_limit": 3000,
+  "grand_total": 2450.50,
+  "budget_remaining": 549.50,
+  "duration_days": 21,
+  "avg_cost_per_day": 116.69,
+  "category_breakdown": {
+    "transport": 280,
+    "accommodation": 1200,
+    "activities": 970.50
+  },
+  "stops": [...per-stop breakdown...],
+  "days": [
+    { "day": "2026-07-01", "activities_cost": 95, "status": "ok" },
+    { "day": "2026-07-02", "activities_cost": 210, "status": "over" }
+  ]
+}
+```
+
+---
+
+### Packing List — `/api/trips/:tripId/packing`
+
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/packing` | Get all items |
+| POST | `/packing` | Add item `{ name, category }` |
+| PATCH | `/packing/:itemId` | Toggle is_packed |
+| DELETE | `/packing/:itemId` | Delete item |
+| DELETE | `/packing` | Reset all (mark unpacked) |
+
+Categories: `clothing | documents | electronics | other`
+
+---
+
+### Notes — `/api/trips/:tripId/notes`
+
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/notes?stopId=5` | Get notes (optionally per stop) |
+| POST | `/notes` | Add note `{ content, stop_id? }` |
+| PUT | `/notes/:noteId` | Update note |
+| DELETE | `/notes/:noteId` | Delete note |
+
+---
+
+### Public Trips — `/api/public` (no auth)
+
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/trip/:token` | View shared itinerary (read-only) |
+
+---
+
+### Admin — `/api/admin` (is_admin = true required)
+
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/analytics` | Full dashboard stats |
+| GET | `/users` | All users + trip counts |
+| DELETE | `/users/:id` | Remove a user |
+
+**Analytics response includes:** total users, trips created per day (30d), top cities bar chart data, user growth line chart data.
+
+---
+
+### Auth flow
+1. POST `/api/auth/register` or `/login` → get `token`
+2. Store token in localStorage
+3. Every request: `Authorization: Bearer <token>` header
+
+### Full user journey API calls
+```
+Register → Login
+→ GET /api/trips                    (My Trips screen)
+→ POST /api/trips                   (Create Trip)
+→ GET /api/cities?search=           (City Search)
+→ POST /api/trips/:id/stops         (Add Stop)
+→ GET /api/cities/:id/activities    (Activity Search)
+→ POST /api/trips/:id/stops/:stopId/activities  (Add Activity)
+→ GET /api/trips/:id/budget         (Budget Screen)
+→ GET /api/trips/:id                (Itinerary View)
+→ POST /api/trips/:id/share         (Get Share URL)
+→ GET /api/public/trip/:token       (Public View - no auth)
+```
+
+### CORS
+Backend allows requests from `http://localhost:5173` (Vite default).  
+Change `FRONTEND_URL` in `.env` if different.
+
+---
