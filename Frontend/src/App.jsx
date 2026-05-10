@@ -1,11 +1,17 @@
+import DashboardLayout from "./components/layout/DashboardLayout";
+
 function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-stone-100">
-      <h1 className="text-5xl font-bold text-teal-600">
-        Traveloop AI
+    <DashboardLayout>
+      <h1 className="text-4xl font-bold text-stone-900">
+        Welcome back, Dhvani 👋
       </h1>
-    </div>
-  )
+
+      <p className="text-stone-500 mt-2">
+        Let’s plan your next intelligent journey.
+      </p>
+    </DashboardLayout>
+  );
 }
 
-export default App
+export default App;
