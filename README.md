@@ -418,7 +418,7 @@ src/
 
 ## 🔐 Authentication Page
 
-![Sign-in](screenshots/Sign-in page.jpeg)
+![Sign-in](screenshots/Sign-in-page.jpeg)
 
 ---
 
@@ -436,16 +436,16 @@ src/
 
 ## 📝 Create Journey
 
-![Create Journey](screenshots/Create a journey.jpeg)
+![Create Journey](screenshots/Create-journey.jpeg)
 
 ---
 
 ## 💰 Budget Management
 
-![Budget](screenshots/Budget management.jpeg)
+![Budget](screenshots/Budget-management.jpeg)
 
 ---
 
 ## 🌍 Activities Explorer
 
-![Activities](screenshots/Explore Activities.jpeg)
+![Activities](screenshots/Explore-Activities.jpeg)
