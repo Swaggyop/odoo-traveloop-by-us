@@ -1,7 +1,7 @@
 # 🗺️ Traveloop — Backend & Database
 
 > Node.js + Express + PostgreSQL  
-> Odoo Hackathon 2026 — Backend Role
+> Odoo Hackathon 2026
 
 ---
 
