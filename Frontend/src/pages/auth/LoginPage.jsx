@@ -1,15 +1,43 @@
+import { useState } from "react";
 import AuthLayout from "../../components/layout/AuthLayout";
 import { Link, useNavigate } from "react-router-dom";
+
+import { loginUser } from "../../services/authService";
 
 function LoginPage() {
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    // Later backend login API here
+    try {
 
-    navigate("/dashboard");
+      setLoading(true);
+
+      const response = await loginUser({
+        email,
+        password,
+      });
+
+      localStorage.setItem("token", response.token);
+      navigate("/dashboard");
+
+    } catch (error) {
+      console.log(error);
+      alert(
+        error.response?.data?.error ||
+        error.response?.data?.message ||
+        "Login failed"
+      );
+    } finally {
+
+      setLoading(false);
+
+    }
   };
 
   return (
@@ -40,6 +68,10 @@ function LoginPage() {
             <input
               type="email"
               placeholder="Enter your email"
+              value={email}
+              onChange={(e) =>
+                setEmail(e.target.value)
+              }
               className="w-full border border-stone-200 rounded-2xl px-5 py-4 outline-none focus:border-teal-500"
             />
 
@@ -54,13 +86,22 @@ function LoginPage() {
             <input
               type="password"
               placeholder="Enter your password"
+              value={password}
+              onChange={(e) =>
+                setPassword(e.target.value)
+              }
               className="w-full border border-stone-200 rounded-2xl px-5 py-4 outline-none focus:border-teal-500"
             />
 
           </div>
 
-          <button className="w-full bg-teal-600 hover:bg-teal-700 text-white py-4 rounded-2xl font-semibold transition">
-            Sign In
+          <button
+            disabled={loading}
+            className="w-full bg-teal-600 hover:bg-teal-700 text-white py-4 rounded-2xl font-semibold transition"
+          >
+            {loading
+              ? "Signing In..."
+              : "Sign In"}
           </button>
 
         </form>

@@ -1,15 +1,45 @@
+import { useState } from "react";
 import AuthLayout from "../../components/layout/AuthLayout";
 import { Link, useNavigate } from "react-router-dom";
+
+import { registerUser } from "../../services/authService";
 
 function RegisterPage() {
   const navigate = useNavigate();
 
-  const handleRegister = (e) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleRegister = async (e) => {
     e.preventDefault();
 
-    // Later backend register API here
+    try {
 
-    navigate("/login");
+      setLoading(true);
+
+      const response = await registerUser({
+        name,
+        email,
+        password,
+      });
+
+      localStorage.setItem("token", response.token);
+      navigate("/dashboard");
+
+    } catch (error) {
+      console.log(error);
+      alert(
+        error.response?.data?.error ||
+        error.response?.data?.message ||
+        "Registration failed"
+      );
+    } finally {
+
+      setLoading(false);
+
+    }
   };
 
   return (
@@ -40,6 +70,10 @@ function RegisterPage() {
             <input
               type="text"
               placeholder="Enter your full name"
+              value={name}
+              onChange={(e) =>
+                setName(e.target.value)
+              }
               className="w-full border border-stone-200 rounded-2xl px-5 py-4 outline-none focus:border-teal-500"
             />
 
@@ -54,6 +88,10 @@ function RegisterPage() {
             <input
               type="email"
               placeholder="Enter your email"
+              value={email}
+              onChange={(e) =>
+                setEmail(e.target.value)
+              }
               className="w-full border border-stone-200 rounded-2xl px-5 py-4 outline-none focus:border-teal-500"
             />
 
@@ -68,13 +106,22 @@ function RegisterPage() {
             <input
               type="password"
               placeholder="Create password"
+              value={password}
+              onChange={(e) =>
+                setPassword(e.target.value)
+              }
               className="w-full border border-stone-200 rounded-2xl px-5 py-4 outline-none focus:border-teal-500"
             />
 
           </div>
 
-          <button className="w-full bg-teal-600 hover:bg-teal-700 text-white py-4 rounded-2xl font-semibold transition">
-            Create Account
+          <button
+            disabled={loading}
+            className="w-full bg-teal-600 hover:bg-teal-700 text-white py-4 rounded-2xl font-semibold transition"
+          >
+            {loading
+              ? "Creating..."
+              : "Create Account"}
           </button>
 
         </form>

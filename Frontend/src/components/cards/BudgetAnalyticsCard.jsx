@@ -3,9 +3,9 @@ import {
   Pie,
   Cell,
   ResponsiveContainer,
-} from "recharts";  
+} from "recharts";
 
-const data = [
+const defaultData = [
   { name: "Hotels", value: 40 },
   { name: "Flights", value: 30 },
   { name: "Activities", value: 20 },
@@ -19,7 +19,14 @@ const COLORS = [
   "#CCFBF1",
 ];
 
-function BudgetAnalyticsCard() {
+function BudgetAnalyticsCard({ breakdown }) {
+  const data = breakdown
+    ? [
+        { name: "Transport", value: breakdown.transport },
+        { name: "Accommodation", value: breakdown.accommodation },
+        { name: "Activities", value: breakdown.activities },
+      ]
+    : defaultData;
   return (
     <div className="bg-white border border-stone-200 rounded-3xl p-6 shadow-sm h-full">
 

@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 
 import DashboardLayout from "../components/layout/DashboardLayout";
+import ProtectedRoute from "../components/layout/ProtectedRoute";
 
 import DashboardPage from "../pages/dashboard/DashboardPage";
 import MyTrips from "../pages/trips/MyTrips";
@@ -18,6 +19,8 @@ import CreateTripPage from "../pages/trips/CreateTripPage";
 import ProfilePage from "../pages/profile/ProfilePage";
 
 function AppRoutes() {
+  const isAuthenticated = !!localStorage.getItem("token");
+
   return (
     <BrowserRouter>
 
@@ -26,7 +29,9 @@ function AppRoutes() {
         {/* Redirect Root */}
         <Route
           path="/"
-          element={<Navigate to="/login" />}
+          element={
+            <Navigate to={isAuthenticated ? "/dashboard" : "/login"} replace />
+          }
         />
 
         {/* Public Routes */}
@@ -44,62 +49,76 @@ function AppRoutes() {
         <Route
           path="/dashboard"
           element={
-            <DashboardLayout>
-              <DashboardPage />
-            </DashboardLayout>
+            <ProtectedRoute>
+              <DashboardLayout>
+                <DashboardPage />
+              </DashboardLayout>
+            </ProtectedRoute>
           }
         />
 
         <Route
           path="/trips"
           element={
-            <DashboardLayout>
-              <MyTrips />
-            </DashboardLayout>
+            <ProtectedRoute>
+              <DashboardLayout>
+                <MyTrips />
+              </DashboardLayout>
+            </ProtectedRoute>
           }
         />
 
         <Route
           path="/budget"
           element={
-            <DashboardLayout>
-              <BudgetPage />
-            </DashboardLayout>
+            <ProtectedRoute>
+              <DashboardLayout>
+                <BudgetPage />
+              </DashboardLayout>
+            </ProtectedRoute>
           }
         />
 
         <Route
           path="/activities"
           element={
-            <DashboardLayout>
-              <ActivityPage />
-            </DashboardLayout>
+            <ProtectedRoute>
+              <DashboardLayout>
+                <ActivityPage />
+              </DashboardLayout>
+            </ProtectedRoute>
           }
         />
 
         {/* Fallback */}
         <Route
           path="*"
-          element={<Navigate to="/login" />}
+          element={
+            <Navigate to={isAuthenticated ? "/dashboard" : "/login"} replace />
+          }
         />
 
         <Route
-  path="/create-trip"
-  element={
-    <DashboardLayout>
-      <CreateTripPage />
-    </DashboardLayout>
-  }
-/>
+          path="/create-trip"
+          element={
+            <ProtectedRoute>
+              <DashboardLayout>
+                <CreateTripPage />
+              </DashboardLayout>
+            </ProtectedRoute>
+          }
+        />
 
-<Route
-  path="/profile"
-  element={
-    <DashboardLayout>
-      <ProfilePage />
-    </DashboardLayout>
-  }
-/>
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <DashboardLayout>
+                <ProfilePage />
+              </DashboardLayout>
+            </ProtectedRoute>
+          }
+        />
 
       </Routes>
 
