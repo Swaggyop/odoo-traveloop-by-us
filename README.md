@@ -91,3 +91,24 @@ Server runs on: **http://localhost:5000**
 trips ──< packing_items
 trips ──< trip_notes ──> trip_stops (optional)
 ```
+
+### Tables
+
+| Table | Purpose | Key Columns |
+|---|---|---|
+| `users` | Auth & profile | id (UUID), email (UNIQUE), password_hash, is_admin |
+| `trips` | Trip plans | id (UUID), user_id→users, start_date, end_date, budget_limit, share_token |
+| `cities` | Seed city catalog | id, name, country, cost_index, currency_code |
+| `activities` | Seed activity catalog | id, city_id→cities, name, category, cost |
+| `trip_stops` | Cities in a trip | id, trip_id→trips, city_id→cities, order_index, accommodation_cost |
+| `stop_activities` | Activities in a stop | id, stop_id→trip_stops, activity_id→activities, custom_cost |
+| `packing_items` | Checklist per trip | id, trip_id→trips, name, category, is_packed |
+| `trip_notes` | Notes per trip/stop | id, trip_id→trips, stop_id (nullable), content |
+
+### Key Relationships
+- `trips` → `trip_stops` → `cities` (many-to-many via junction)
+- `trip_stops` → `stop_activities` → `activities` (many-to-many via junction)
+- Users can add **custom activities** (no activity_id, just custom_name + custom_cost)
+- Public sharing via `share_token` (short random string), no auth needed to read
+
+---
