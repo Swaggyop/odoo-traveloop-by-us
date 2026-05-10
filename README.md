@@ -372,3 +372,43 @@ Built with React, Tailwind CSS, and Vite for fast performance and scalable compo
 - Edit User Details
 - Logout Support
 - Account Settings UI
+
+---
+
+# 🛠 Frontend Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| React | Frontend Framework |
+| Vite | Build Tool |
+| Tailwind CSS | Styling |
+| React Router DOM | Routing |
+| Axios | API Requests |
+| Recharts | Analytics Graphs |
+| Lucide React | Icons |
+
+---
+
+# 📁 Frontend Folder Structure
+
+```bash
+src/
+│
+├── components/
+│   ├── cards/
+│   ├── layout/
+│   └── ui/
+│
+├── pages/
+│   ├── auth/
+│   ├── dashboard/
+│   ├── trips/
+│   ├── budget/
+│   ├── activities/
+│   └── profile/
+│
+├── routes/
+├── services/
+├── styles/
+└── App.jsx
+```
