@@ -341,4 +341,34 @@ Built with React, Tailwind CSS, and Vite for fast performance and scalable compo
 - Recent Activity Timeline
 - Upcoming Journeys Section
 
----first commit 
+---
+
+## ✈️ Trips Management
+- Create New Trip
+- View All Trips
+- Dynamic Trip Cards
+- Destination & Budget Overview
+- Backend-ready Trip Fetching Structure
+
+---
+
+## 💰 Budget Management
+- Budget Analytics
+- Expense Insights
+- AI Budget Optimization Suggestions
+- Interactive Charts using Recharts
+
+---
+
+## 🌍 Activities Explorer
+- Explore Travel Activities
+- Category Filtering UI
+- Experience Cards
+- Travel Recommendations
+
+---
+
+## 👤 Profile Management
+- Edit User Details
+- Logout Support
+- Account Settings UI
