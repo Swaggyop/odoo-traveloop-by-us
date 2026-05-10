@@ -144,3 +144,63 @@ All protected routes need: `Authorization: Bearer <token>`
 | POST | `/:id/share` | Toggle public sharing, returns share_url |
 | POST | `/:id/clone` | Clone trip into my account |
 | GET | `/:id/budget` | Full cost breakdown |
+
+
+**Create/Update body:**
+```json
+{
+  "title": "Europe Summer 2026",
+  "description": "3 weeks in Europe",
+  "start_date": "2026-07-01",
+  "end_date": "2026-07-21",
+  "budget_limit": 3000,
+  "cover_image": "https://..."
+}
+```
+
+---
+
+### Stops — `/api/trips/:tripId/stops`
+
+| Method | Path | Description |
+|--------|------|-------------|
+| POST | `/stops` | Add a city stop |
+| PUT | `/stops/reorder` | Reorder stops |
+| PUT | `/stops/:stopId` | Update stop dates/costs |
+| DELETE | `/stops/:stopId` | Remove stop |
+| POST | `/stops/:stopId/activities` | Add activity to stop |
+| DELETE | `/stops/:stopId/activities/:actId` | Remove activity |
+
+**Add stop body:**
+```json
+{
+  "city_id": 1,
+  "arrival_date": "2026-07-01",
+  "departure_date": "2026-07-05",
+  "accommodation_cost": 400,
+  "transport_cost": 80
+}
+```
+
+**Add activity body:**
+```json
+{
+  "activity_id": 3,
+  "scheduled_date": "2026-07-02",
+  "scheduled_time": "10:00"
+}
+// OR custom activity:
+{
+  "custom_name": "Private Boat Tour",
+  "custom_cost": 150,
+  "custom_duration_hrs": 3,
+  "scheduled_date": "2026-07-03"
+}
+```
+
+**Reorder body:**
+```json
+{ "order": [{ "id": 5, "order_index": 0 }, { "id": 3, "order_index": 1 }] }
+```
+
+---
