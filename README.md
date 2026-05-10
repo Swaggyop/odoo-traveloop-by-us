@@ -453,17 +453,3 @@ src/
 ## API Testing 1
 
 ![api_testing](Api_Testing\api_testing_1.png)
-
-
-## API Testing 2
-
-![api_testing2](Api_Testing\api_testing_2.png)
-
-## API Testing 3
-
-![api_testing3](Api_Testing\api_testing_3.png)
-
-
-## API Testing 4
-
-![api_testing4](Api_Testing\api_testing_4.png)
