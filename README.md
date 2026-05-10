@@ -37,3 +37,57 @@ traveloop-backend/
 ```
 
 ---
+
+## ⚙️ Setup (do this first!)
+
+### 1. Install dependencies
+```bash
+npm install
+```
+
+### 2. Create your .env
+```bash
+cp .env.example .env
+# Fill in DB_PASSWORD and JWT_SECRET
+```
+
+### 3. Create PostgreSQL database
+```bash
+psql -U postgres -c "CREATE DATABASE traveloop;"
+```
+
+### 4. Run migrations (creates all tables)
+```bash
+node migrations/run.js
+```
+
+### 5. Seed data (cities + activities)
+```bash
+node seeds/run.js
+```
+
+### 6. Start the server
+```bash
+npm run dev        # development (nodemon)
+npm start          # production
+```
+
+Server runs on: **http://localhost:5000**
+
+---
+
+## 🗄️ Database Schema
+
+```
+┌──────────┐     ┌──────────────┐     ┌──────────────┐     ┌─────────────────┐
+│  users   │────<│    trips     │────<│  trip_stops  │────<│ stop_activities │
+└──────────┘     └──────────────┘     └──────────────┘     └─────────────────┘
+                                             │                      │
+                                             ▼                      ▼
+                                        ┌────────┐           ┌────────────┐
+                                        │ cities │           │ activities │
+                                        └────────┘           └────────────┘
+
+trips ──< packing_items
+trips ──< trip_notes ──> trip_stops (optional)
+```
