@@ -311,3 +311,34 @@ Backend allows requests from `http://localhost:5173` (Vite default).
 Change `FRONTEND_URL` in `.env` if different.
 
 ---
+
+---
+
+# 🎨 Frontend Overview
+
+Traveloop frontend is built using a modern SaaS-inspired UI architecture focused on intelligent travel planning, budgeting, analytics, and seamless user experience.
+
+Built with React, Tailwind CSS, and Vite for fast performance and scalable component management. :contentReference[oaicite:0]{index=0}
+
+---
+
+# 🚀 Frontend Features
+
+## 🔐 Authentication
+- User Login
+- User Registration
+- Protected Dashboard Flow
+- Logout Functionality
+- Token-ready Authentication Architecture
+
+---
+
+## 📊 Dashboard
+- Smart Analytics Dashboard
+- KPI Statistics Cards
+- AI Recommendation Panels
+- Budget Insights
+- Recent Activity Timeline
+- Upcoming Journeys Section
+
+---first commit 
