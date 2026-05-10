@@ -107,7 +107,7 @@ const reorderStops = async (req, res) => {
 
 // POST /api/trips/:tripId/stops/:stopId/activities
 const addActivity = async (req, res) => {
-  const { stopId } = req.params;
+  const { tripId, stopId } = req.params;
   const { activity_id, custom_name, custom_cost, custom_duration_hrs, scheduled_date, scheduled_time, notes } = req.body;
 
   if (!activity_id && !custom_name) {
@@ -115,11 +115,23 @@ const addActivity = async (req, res) => {
   }
 
   try {
+    const stopRes = await pool.query(
+      `SELECT ts.id
+       FROM trip_stops ts
+       JOIN trips t ON t.id = ts.trip_id
+       WHERE ts.id = $1 AND ts.trip_id = $2 AND t.user_id = $3`,
+      [stopId, tripId, req.user.id]
+    );
+
+    if (stopRes.rows.length === 0) {
+      return res.status(404).json({ error: 'Stop not found or access denied' });
+    }
+
     const result = await pool.query(
       `INSERT INTO stop_activities (stop_id, activity_id, custom_name, custom_cost, custom_duration_hrs, scheduled_date, scheduled_time, notes)
        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
        RETURNING *`,
-      [stopId, activity_id || null, custom_name, custom_cost, custom_duration_hrs, scheduled_date, scheduled_time, notes]
+      [stopId, activity_id || null, custom_name, custom_cost || 0, custom_duration_hrs || 0, scheduled_date, scheduled_time, notes]
     );
     res.status(201).json(result.rows[0]);
   } catch (err) {
